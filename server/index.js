@@ -1,7 +1,24 @@
+// Importing the modules ...
 import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
+dotenv.config();
+
+// Connecting to database ...
+mongoose.connect(process.env.MONGO_DB_URL)
+.then(()=>{
+    console.log('Database is connected');
+})
+.catch((err) => {
+    console.log(err);
+});
+
+// Configuring the app ...
 const app = express();
 
+
+// Routing the app ...
 app.get('/', (req, res) => {
     res.send("Hello world!");
 });
